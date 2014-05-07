@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SOCueRunner.h"
 
 @interface SOViewController : UIViewController
 
