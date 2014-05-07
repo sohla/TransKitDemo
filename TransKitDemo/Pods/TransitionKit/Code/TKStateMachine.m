@@ -180,9 +180,9 @@ static NSString *TKQuoteString(NSString *string)
     self.active = YES;
     
     // Dispatch callbacks to establish initial state
-    if (self.initialState.willEnterStateBlock) self.initialState.willEnterStateBlock(self.initialState, nil);
+//    if (self.initialState.willEnterStateBlock) self.initialState.willEnterStateBlock(self.initialState, nil);
     self.currentState = self.initialState;
-    if (self.initialState.didEnterStateBlock) self.initialState.didEnterStateBlock(self.initialState, nil);
+//    if (self.initialState.didEnterStateBlock) self.initialState.didEnterStateBlock(self.initialState, nil);
 }
 
 - (BOOL)canFireEvent:(id)eventOrEventName
