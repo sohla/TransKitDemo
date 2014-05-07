@@ -98,6 +98,8 @@
         
     }
     
+    [self.stateMachine activate];
+    
 }
 
 -(void)nextState{
@@ -119,6 +121,7 @@
     TKState *nextState = [newStateMachine stateNamed:nextTitle];
 
     newStateMachine.initialState = current;
+    
     
 //    NSLog(@"%@->%@",[current name],[nextState name]);
 

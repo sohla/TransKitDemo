@@ -185,6 +185,17 @@ static NSString *TKQuoteString(NSString *string)
 //    if (self.initialState.didEnterStateBlock) self.initialState.didEnterStateBlock(self.initialState, nil);
 }
 
+- (void)activateWithBlocks
+{
+    if (self.isActive) [NSException raise:NSInternalInconsistencyException format:@"The state machine has already been activated."];
+    self.active = YES;
+    
+    // Dispatch callbacks to establish initial state
+    if (self.initialState.willEnterStateBlock) self.initialState.willEnterStateBlock(self.initialState, nil);
+    self.currentState = self.initialState;
+    if (self.initialState.didEnterStateBlock) self.initialState.didEnterStateBlock(self.initialState, nil);
+}
+
 - (BOOL)canFireEvent:(id)eventOrEventName
 {
     if (! [eventOrEventName isKindOfClass:[TKEvent class]] && ![eventOrEventName isKindOfClass:[NSString class]]) [NSException raise:NSInvalidArgumentException format:@"Expected a `TKEvent` object or `NSString` object specifying the name of an event, instead got a `%@` (%@)", [eventOrEventName class], eventOrEventName];

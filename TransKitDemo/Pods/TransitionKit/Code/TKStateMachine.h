@@ -172,6 +172,12 @@
 - (void)activate;
 
 /**
+ 
+ As above but calls blocks. Use for initial startup.
+ */
+- (void)activateWithBlocks;
+
+/**
  Returns a Boolean value that indicates if the receiver has been activated.
  */
 - (BOOL)isActive;
