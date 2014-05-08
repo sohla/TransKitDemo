@@ -78,35 +78,30 @@
         TKState *state = [TKState stateWithName:cue[@"title"]];
 
         [state setWillEnterStateBlock:^(TKState *state, TKTransition *transition) {
-            NSLog(@"will ENTER %@",[state name]);
-            
-            //• get worker class
-            //• call willEnter
-            
+            id<SOCueProtocol> cue = [[transition userInfo] objectForKey:@"cue"];
+            [cue willEnter:@{@"cueRunner":self,@"transition":transition}];
         }];
 
         [state setDidEnterStateBlock:^(TKState *state, TKTransition *transition) {
-            NSLog(@"did ENTER %@",[state name]);
-//            SOCueRunner *cueRunner = [[transition userInfo] objectForKey:@"cueRunner"];
-//            [cueRunner nextState];
-
+            id<SOCueProtocol> cue = [[transition userInfo] objectForKey:@"cue"];
+            [cue didEnter:@{@"cueRunner":self,@"transition":transition}];
         }];
         
-        
         [state setWillExitStateBlock:^(TKState *state, TKTransition *transition) {
-            NSLog(@"will EXIT %@",[state name]);
-            
+            id<SOCueProtocol> cue = [[transition userInfo] objectForKey:@"cue"];
+            [cue willExit:@{@"cueRunner":self,@"transition":transition}];
         }];
         
         [state setDidExitStateBlock:^(TKState *state, TKTransition *transition){
-            NSLog(@"did EXIT %@",[state name]);
+            id<SOCueProtocol> cue = [[transition userInfo] objectForKey:@"cue"];
+            [cue didExit:@{@"cueRunner":self,@"transition":transition}];
         }];
         
        [self.stateMachine addState:state];
         
     }
     
-    [self.stateMachine activateWithBlocks];
+    [self.stateMachine activate];
     
 }
 
@@ -137,10 +132,11 @@
     [newStateMachine addEvent:nextEvent];
     [newStateMachine activate];
   
-    //• create class of type [[NSClassFromString(@"NameofClass") alloc] init];
+    NSString *classTitle = self.cuesStore[@"cues"][self.currentCueIndex][@"class"];
+    id<SOCueProtocol> cue = [[NSClassFromString(classTitle) alloc] init];
     
     
-    NSDictionary *userInfo = @{@"cueRunner": self};
+    NSDictionary *userInfo = @{@"cue":cue, @"data":self.cuesStore[@"cues"][self.currentCueIndex]};
     NSError *error = nil;
 
     BOOL success = [newStateMachine fireEvent:eventName userInfo:userInfo error:&error];

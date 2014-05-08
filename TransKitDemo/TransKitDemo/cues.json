@@ -4,31 +4,35 @@
         
             "index" : 0,
             "title" : "door level 1 exit",
-            "type" : "movie"
+            "class" : "SOBaseCue"
                   
         
         },{
         
             "index" : 1,
-            "title" : "walkway level 2"
+            "title" : "walkway level 2",
+              "class" : "SOFollowOnCue"
 
         
         },{
 
             "index" : 2,
-            "title" : "window 3"
+            "title" : "window 3",
+              "class" : "SOBaseCue"
 
 
         },{
 
             "index" : 3,
-            "title" : "stairs 4"
+            "title" : "stairs 4",
+              "class" : "SOBaseCue"
 
 
         },{
 
             "index" : 4,
-            "title" : "painting 5"
+            "title" : "painting 5",
+              "class" : "SOBaseCue"
 
 
         }

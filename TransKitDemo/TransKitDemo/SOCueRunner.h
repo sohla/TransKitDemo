@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <TransitionKit/TransitionKit.h>
+#import "SOBaseCue.h"
 
 @interface SOCueRunner : NSObject
 

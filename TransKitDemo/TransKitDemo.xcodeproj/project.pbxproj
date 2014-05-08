@@ -25,6 +25,8 @@
 		F0011FD519185BF900261F17 /* TransKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F0011FD419185BF900261F17 /* TransKitDemoTests.m */; };
 		F0011FE01919A80E00261F17 /* SOCueRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = F0011FDF1919A80E00261F17 /* SOCueRunner.m */; };
 		F0011FE21919AB5D00261F17 /* cues.json in Resources */ = {isa = PBXBuildFile; fileRef = F0011FE11919AB5D00261F17 /* cues.json */; };
+		F0011FE7191B015D00261F17 /* SOBaseCue.m in Sources */ = {isa = PBXBuildFile; fileRef = F0011FE6191B015D00261F17 /* SOBaseCue.m */; };
+		F0011FEA191B046D00261F17 /* SOFollowOnCue.m in Sources */ = {isa = PBXBuildFile; fileRef = F0011FE9191B046D00261F17 /* SOFollowOnCue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,11 @@
 		F0011FDE1919A80E00261F17 /* SOCueRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOCueRunner.h; sourceTree = "<group>"; };
 		F0011FDF1919A80E00261F17 /* SOCueRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOCueRunner.m; sourceTree = "<group>"; };
 		F0011FE11919AB5D00261F17 /* cues.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cues.json; sourceTree = "<group>"; };
+		F0011FE4191B00EE00261F17 /* SOCueProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SOCueProtocol.h; sourceTree = "<group>"; };
+		F0011FE5191B015D00261F17 /* SOBaseCue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOBaseCue.h; sourceTree = "<group>"; };
+		F0011FE6191B015D00261F17 /* SOBaseCue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOBaseCue.m; sourceTree = "<group>"; };
+		F0011FE8191B046D00261F17 /* SOFollowOnCue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOFollowOnCue.h; sourceTree = "<group>"; };
+		F0011FE9191B046D00261F17 /* SOFollowOnCue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOFollowOnCue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +140,11 @@
 				F0011FBF19185BF900261F17 /* SOViewController.m */,
 				F0011FDE1919A80E00261F17 /* SOCueRunner.h */,
 				F0011FDF1919A80E00261F17 /* SOCueRunner.m */,
+				F0011FE4191B00EE00261F17 /* SOCueProtocol.h */,
+				F0011FE5191B015D00261F17 /* SOBaseCue.h */,
+				F0011FE6191B015D00261F17 /* SOBaseCue.m */,
+				F0011FE8191B046D00261F17 /* SOFollowOnCue.h */,
+				F0011FE9191B046D00261F17 /* SOFollowOnCue.m */,
 				F0011FC119185BF900261F17 /* Images.xcassets */,
 				F0011FAD19185BF800261F17 /* Supporting Files */,
 			);
@@ -307,7 +319,9 @@
 				F0011FB719185BF800261F17 /* SOAppDelegate.m in Sources */,
 				F0011FE01919A80E00261F17 /* SOCueRunner.m in Sources */,
 				F0011FC019185BF900261F17 /* SOViewController.m in Sources */,
+				F0011FEA191B046D00261F17 /* SOFollowOnCue.m in Sources */,
 				F0011FB319185BF800261F17 /* main.m in Sources */,
+				F0011FE7191B015D00261F17 /* SOBaseCue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
