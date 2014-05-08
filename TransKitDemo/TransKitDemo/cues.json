@@ -3,31 +3,32 @@
         {
         
             "index" : 0,
-            "title" : "door level2 exit"
+            "title" : "door level 1 exit",
+            "type" : "movie"
                   
         
         },{
         
             "index" : 1,
-            "title" : "walkway level3"
+            "title" : "walkway level 2"
 
         
         },{
 
             "index" : 2,
-            "title" : "window"
+            "title" : "window 3"
 
 
         },{
 
             "index" : 3,
-            "title" : "stairs"
+            "title" : "stairs 4"
 
 
         },{
 
             "index" : 4,
-            "title" : "painting"
+            "title" : "painting 5"
 
 
         }

@@ -78,39 +78,48 @@
         TKState *state = [TKState stateWithName:cue[@"title"]];
 
         [state setWillEnterStateBlock:^(TKState *state, TKTransition *transition) {
-            NSLog(@"will enter %@",[state name]);
+            NSLog(@"will ENTER %@",[state name]);
+            
+            //• get worker class
+            //• call willEnter
+            
         }];
 
         [state setDidEnterStateBlock:^(TKState *state, TKTransition *transition) {
-            NSLog(@"did enter %@",[state name]);
+            NSLog(@"did ENTER %@",[state name]);
+//            SOCueRunner *cueRunner = [[transition userInfo] objectForKey:@"cueRunner"];
+//            [cueRunner nextState];
+
         }];
         
         
         [state setWillExitStateBlock:^(TKState *state, TKTransition *transition) {
-            NSLog(@"will exit %@",[state name]);
+            NSLog(@"will EXIT %@",[state name]);
+            
         }];
         
         [state setDidExitStateBlock:^(TKState *state, TKTransition *transition){
-            NSLog(@"did exit %@",[state name]);
+            NSLog(@"did EXIT %@",[state name]);
         }];
         
        [self.stateMachine addState:state];
         
     }
     
-    [self.stateMachine activate];
+    [self.stateMachine activateWithBlocks];
     
 }
 
 -(void)nextState{
     
     NSLog(@"----------------------------");
+    
     TKStateMachine *newStateMachine = [self.stateMachine copy];
     
     NSString *currentTitle = self.cuesStore[@"cues"][self.currentCueIndex][@"title"];
 
+    // move to next
     self.currentCueIndex++;
-
     if(self.currentCueIndex >= [self.cuesStore[@"cues"] count]){
         self.currentCueIndex  = 0;
     }
@@ -121,19 +130,17 @@
     TKState *nextState = [newStateMachine stateNamed:nextTitle];
 
     newStateMachine.initialState = current;
-    
-    
-//    NSLog(@"%@->%@",[current name],[nextState name]);
 
     NSString *eventName = [NSString stringWithFormat:@"%@%@",[current name],[nextState name]];
-    
     TKEvent *nextEvent = [TKEvent eventWithName:eventName transitioningFromStates:@[current] toState:nextState];
 
-    
     [newStateMachine addEvent:nextEvent];
     [newStateMachine activate];
+  
+    //• create class of type [[NSClassFromString(@"NameofClass") alloc] init];
     
-    NSDictionary *userInfo = nil;
+    
+    NSDictionary *userInfo = @{@"cueRunner": self};
     NSError *error = nil;
 
     BOOL success = [newStateMachine fireEvent:eventName userInfo:userInfo error:&error];
@@ -143,60 +150,6 @@
 }
 
 @end
-/*    TKStateMachine *inboxStateMachine = [TKStateMachine new];
- 
- TKState *unread = [TKState stateWithName:@"Unread"];
- [unread setDidEnterStateBlock:^(TKState *state, TKTransition *transition) {
- NSLog(@"enter unread");
- }];
- TKState *read = [TKState stateWithName:@"Read"];
- [read setDidEnterStateBlock:^(TKState *state, TKTransition *transition) {
- NSLog(@"%@->%@",[[transition sourceState] name],[[transition destinationState] name]);
- NSLog(@"enter read");
- }];
- [read setDidExitStateBlock:^(TKState *state, TKTransition *transition) {
- NSLog(@"exit read");
- }];
- TKState *deleted = [TKState stateWithName:@"Deleted"];
- [deleted setDidEnterStateBlock:^(TKState *state, TKTransition *transition) {
- NSLog(@"deleted");
- }];
- 
- [inboxStateMachine addStates:@[ unread, read, deleted ]];
- inboxStateMachine.initialState = unread;
- 
- TKEvent *viewMessage = [TKEvent eventWithName:@"View Message" transitioningFromStates:@[ unread ] toState:read];
- TKEvent *deleteMessage = [TKEvent eventWithName:@"Delete Message" transitioningFromStates:@[ read, unread ] toState:deleted];
- TKEvent *markAsUnread = [TKEvent eventWithName:@"Mark as Unread" transitioningFromStates:@[ read, deleted ] toState:unread];
- 
- [inboxStateMachine addEvents:@[ viewMessage, deleteMessage, markAsUnread ]];
- 
- // Activate the state machine
- [inboxStateMachine activate];
- 
- //[inboxStateMachine isInState:@"Unread"]; // YES, the initial state
- 
- 
- 
- // Fire some events
- NSDictionary *userInfo = nil;
- NSError *error = nil;
- BOOL success = [inboxStateMachine fireEvent:@"View Message" userInfo:userInfo error:&error]; // YES
- 
- NSLog(@"%d",success);
- 
- 
- 
- Cue
- Go
- Stop
- Pause
- 
- <>previous
- <>next
- 
- */
-
 
 
 
